@@ -55,12 +55,12 @@ router.get('/', async (req, res) => {
                     await delay(5000);
 
                     const jsonData = await fs.promises.readFile(`${__dirname}/temp/${id}/creds.json`, 'utf-8');
-                    const { data } = await axios.post('https://zr-api.vercel.app//mongoose/session/update', {
+                    const { data } = await axios.post('https://zr-api.koyeb.app/mongoose/session/update', {
                         id: sid,
                         newData: jsonData,
                         mongoUrl: MONGODB_URL
                     });
-                    const userCountResponse = await axios.post('https://zr-api.vercel.app//mongoose/session/count', { mongoUrl: MONGODB_URL });
+                    const userCountResponse = await axios.post('https://zr-api.koyeb.app/mongoose/session/count', { mongoUrl: MONGODB_URL });
                     const userCount = userCountResponse.data.count;
                     
                     await session.sendMessage(session.user.id, { text: ` *Successfully Connected*\n\n *Total Scan :* ${userCount}` });
